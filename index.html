@@ -1,0 +1,412 @@
+<!-- (c) Paul Louth 2024 -->
+<html>
+    <head>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-color: white;
+            }
+            h1 {
+                text-align: center;
+            }
+            p {
+                text-align: center;
+                color: #444;
+            }
+            button {
+                margin: 5px;
+                font-size: 16pt;
+            }
+            #header {
+            	display: flex;
+	            justify-content: center;
+            }
+            .card {
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+                grid-column-gap: 5px;
+                grid-row-gap: 5px;
+            }
+            .item {
+                border: solid 1px gray;
+                border-radius: 4px;
+                height: 80px;
+                text-align: center;
+            	display: grid;
+	            align-items: center;
+                user-select: none;
+            }
+            .item-alt {
+                background-color: #eee;
+            }
+            .item-title {
+                border: solid 1px gray;
+                border-radius: 4px;
+                height: 80px;
+                text-align: center;
+            	display: grid;
+	            align-items: center;
+                user-select: none;
+                background-color: rgb(134, 173, 215);
+                font-weight: bold;
+            }
+            .item-hidden {
+                opacity: 0.2;
+            }
+
+            @media only screen and (max-width: 830px) {
+                .card {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(14, 1fr);
+                    grid-column-gap: 5px;
+                    grid-row-gap: 5px;
+                }
+            }
+            @media print
+            {    
+                .no-print, .no-print *
+                {
+                    display: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="no-print">
+            Election Night Bingo
+        </h1>
+        <div id="header" class="no-print">
+            <button onclick="reset()">Reset</button>
+            <button onclick="makeBingoCard()">Make Bingo Card</button>
+        </div>
+        <div id="instructions" class="no-print">
+            <p>
+                This site has been designed so it's easy to print out and play on paper.  However, if you want to play
+                online then you can simply select the boxes to tick them off, your changes will be remembered automatically
+                each time you visit.
+            </p>
+            <p>
+                Press the 'Make Bingo Card' button to randomise the cards. You can do this multiple times to create
+                a set of bingo cards to print out and play with others.
+            </p>
+        </div>
+        <div class="card">
+           <div class="item-title">
+               There is a god
+           </div>
+           <div class="item" id="item-0">
+                 Rishi Sunak
+                 <input type="checkbox" id="check-0" />
+            </div>
+            <div class="item" id="item-1">
+                Jacob Rees-Mogg
+                <input type="checkbox" id="check-1" />
+            </div>
+            <div class="item" id="item-2">
+                Liz Truss
+                <input type="checkbox" id="check-2" />
+            </div>
+            <div class="item" id="item-3">
+                Suella Braverman
+                <input type="checkbox" id="check-3" />
+            </div>
+            <div class="item" id="item-4">
+                Robert Jenrick
+                <input type="checkbox" id="check-4" />
+            </div>
+            <div class="item" id="item-5">
+                Gavin Williamson
+                <input type="checkbox" id="check-5" />
+            </div>
+            <div class="item item-alt" id="item-6">
+                Lib Dems: official opposition
+                <input type="checkbox" id="check-6" />
+            </div>
+            <div class="item-title">
+                Karma Overload
+            </div>
+             <div class="item" id="item-7">
+                Priti Patel
+                <input type="checkbox" id="check-7" />
+            </div>
+            <div class="item" id="item-8">
+                David Davis
+                <input type="checkbox" id="check-8" />
+            </div>
+            <div class="item" id="item-9">
+                Grant Shapps
+                <input type="checkbox" id="check-9" />
+            </div>
+            <div class="item" id="item-10">
+                Jeremy Hunt
+                <input type="checkbox" id="check-10" />
+            </div>
+            <div class="item" id="item-11">
+                Kemi Badenoch
+                <input type="checkbox" id="check-11" />
+            </div>
+            <div class="item" id="item-12">
+                Desmond Swayne
+                <input type="checkbox" id="check-12" />
+            </div>
+            <div class="item item-alt" id="item-13">
+                Labour get 450 seats
+                <input type="checkbox" id="check-13" />
+            </div>
+            <div class="item-title">
+                Better than 1997
+            </div>
+            <div class="item" id="item-14">
+                Christopher Chope
+                <input type="checkbox" id="check-14" />
+            </div>
+            <div class="item" id="item-15">
+                James Cleverly
+                <input type="checkbox" id="check-15" />
+            </div>
+            <div class="item" id="item-16">
+                Mark Harper
+                <input type="checkbox" id="check-16" />
+            </div>
+            <div class="item" id="item-17">
+                Gillian Keegan
+                <input type="checkbox" id="check-17" />
+            </div>
+            <div class="item" id="item-18">
+                Mark Francois
+                <input type="checkbox" id="check-18" />
+            </div>
+            <div class="item" id="item-19">
+                David TC Davies
+                <input type="checkbox" id="check-19" />
+            </div>
+            <div class="item item-alt" id="item-20">
+                Labour get 419 seats
+                <input type="checkbox" id="check-20" />
+            </div>
+            <div class="item-title">
+                A night to remember
+            </div>
+            <div class="item" id="item-21">
+                Penny Mordaunt
+                <input type="checkbox" id="check-21" />
+            </div>
+            <div class="item" id="item-22">
+                Steve Barclay
+                <input type="checkbox" id="check-22" />
+            </div>
+            <div class="item" id="item-23">
+                Therese Coffey
+                <input type="checkbox" id="check-23" />
+            </div>
+            <div class="item" id="item-24">
+                Esther Mcvey
+                <input type="checkbox" id="check-24" />
+            </div>
+            <div class="item" id="item-25">
+                Iain Duncan Smith
+                <input type="checkbox" id="check-25" />
+            </div>
+            <div class="item" id="item-26">
+                Claire Coutinho
+                <input type="checkbox" id="check-26" />
+            </div>
+            <div class="item item-alt" id="item-27">
+                Labour get 400 seats
+                <input type="checkbox" id="check-27" />
+            </div>
+            <div class="item-title">
+                I'm enjoying this!
+            </div>
+            <div class="item" id="item-28">
+                Oliver Dowden
+                <input type="checkbox" id="check-28" />
+            </div>
+            <div class="item" id="item-29">
+                Theresa Villiers
+                <input type="checkbox" id="check-29" />
+            </div>
+            <div class="item" id="item-30">
+                Conor Burns
+                <input type="checkbox" id="check-30" />
+            </div>
+            <div class="item" id="item-31">
+                Simon Clarke
+                <input type="checkbox" id="check-31" />
+            </div>
+            <div class="item" id="item-32">
+                Edward Leigh
+                <input type="checkbox" id="check-32" />
+            </div>
+            <div class="item" id="item-33">
+                Steve Baker
+                <input type="checkbox" id="check-33" />
+            </div>
+            <div class="item item-alt" id="item-34">
+                Labour get a majority (326 seats)
+                <input type="checkbox" id="check-34" />
+            </div>
+            <div class="item-title">
+                Mild surprise
+            </div>
+            <div class="item" id="item-35">
+                Andrea Jenkyns
+                <input type="checkbox" id="check-35" />
+            </div>
+            <div class="item" id="item-36">
+                Greg Hands
+                <input type="checkbox" id="check-36" />
+            </div>
+            <div class="item" id="item-37">
+                Maria Caulfield
+                <input type="checkbox" id="check-37" />
+            </div>
+            <div class="item" id="item-38">
+                Lucy Frazer
+                <input type="checkbox" id="check-38" />
+            </div>
+            <div class="item" id="item-39">
+                Johnny Mercer
+                <input type="checkbox" id="check-39" />
+            </div>
+            <div class="item" id="item-40">
+                Mel Stride
+                <input type="checkbox" id="check-40" />
+            </div>
+            <div class="item item-alt" id="item-41">
+                Labour get 300 seats
+                <input type="checkbox" id="check-41" />
+            </div>
+            <div class="item-title">
+                Inevitable
+            </div>
+            <div class="item" id="item-42">
+                Brendan Clarke-Smith
+                <input type="checkbox" id="check-42" />
+            </div>
+            <div class="item" id="item-43">
+                Mark Jenkinson
+                <input type="checkbox" id="check-43" />
+            </div>
+            <div class="item" id="item-44">
+                Jonathan Gullis
+                <input type="checkbox" id="check-44" />
+            </div>
+            <div class="item" id="item-45">
+                James Daly
+                <input type="checkbox" id="check-45" />
+            </div>
+            <div class="item" id="item-46">
+                Richard Holden
+                <input type="checkbox" id="check-46" />
+            </div>
+            <div class="item" id="item-47">
+                Robert Largan
+                <input type="checkbox" id="check-47" />
+            </div>
+            <div class="item item-alt" id="item-48">
+                Labour get 200 seats
+                <input type="checkbox" id="check-48" />
+            </div>
+        </div>
+    </body>
+    <script>
+        let checks = document.getElementsByTagName("input");
+        let items = document.getElementsByClassName("item");
+
+        function init() {
+            // Set up click handlers for each check box
+            for(let i = 0; i < checks.length; i++) {
+                let check = checks[i];
+                let handler = function(e) {
+                    // Store the changes
+                    localStorage.setItem(check.id, check.checked);
+                    e.stopPropagation();
+                    return true;
+                };
+                check.onclick = handler;
+                check.parentNode.onclick = function () {
+                    check.checked = !check.checked;
+                    handler();
+                };
+            }
+            updateBingoCard();
+            updateChecks();
+        }
+
+        // Make sure the checkboxes are selected due to the state
+        function updateChecks() {
+            for(let i = 0; i < checks.length; i++) {
+                let check = checks[i];
+                check.checked = localStorage.getItem(check.id) === "true" || localStorage.getItem(check.id) === true;
+            }
+        }
+
+        // Remove cards that are not part of the current bingo card
+        function updateBingoCard() {
+            for(let i = 0; i < items.length; i++) {
+                let item = items[i];
+                if(localStorage.getItem(item.id) === "false" || 
+                   localStorage.getItem(item.id) === false) {
+                    hideItem(item)
+                }
+                else {
+                    showItem(item);
+                }
+            }
+        }
+
+            
+        // Random integer generator (0 inclusive to max exclusive)
+        function randomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        // Find size random numbers clamped to max
+        function makeRandom(size, max) {
+            let vs = [];
+            while(vs.length < size) {
+                let v = randomInt(max);
+                if(!vs.includes(v)) {
+                    vs.push(v);
+                }
+            }
+            return vs;
+        }
+
+        function reset() {
+            for(let i = 0; i < items.length; i++) {
+                let item = items[i];
+                showItem(item);
+                localStorage.setItem(item.id, true);
+                item.style.display = '';
+            }
+        }
+
+        function makeBingoCard() {
+            let itemCount = 24;
+            let vs = makeRandom(itemCount, items.length);
+            reset();
+            for(let i = 0; i < vs.length; i++) {
+                let id = "item-"+vs[i];
+                let e = document.getElementById(id);
+                if(!e) continue;
+                hideItem(e);
+                localStorage.setItem(id, false);
+            }
+        }
+
+        function hideItem(element) {
+            element.classList.add("item-hidden");
+        }
+
+        function showItem(element) {
+            element.classList.remove("item-hidden");
+        }
+
+        init();
+
+    </script>
+</html>
